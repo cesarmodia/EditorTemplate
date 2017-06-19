@@ -1,0 +1,16 @@
+﻿@model EditorTemplate.Models.Cliente
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<table>
+    <tr>
+        <td>@Html.LabelFor(m => m.Nombre)</td>
+        <td>@Html.EditorFor(m => m.Nombre)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.tipoCliente)</td>
+        <td>@Html.EditorFor(m => m.tipoCliente)</td>
+    </tr>
+</table>

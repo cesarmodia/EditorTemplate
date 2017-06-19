@@ -1,0 +1,38 @@
+﻿@using System.ComponentModel.DataAnnotations
+
+@{
+    List<SelectListItem> listaTipoEnum = new List<SelectListItem>();
+    string textoMostrar;
+    if (ViewData["textoMostrar"] != null)
+    {
+        textoMostrar = ViewData["textoMostrar"].ToString();
+    }
+    else
+    {
+        textoMostrar = null;
+    }
+    object atributosHtml = ViewData["htmlAttributes"];
+    if (Model != null)
+    {
+        var tipoEnum = Model.GetType();
+        foreach (var valor in Enum.GetValues(tipoEnum))
+        {
+            var campo = tipoEnum.GetField(valor.ToString());
+            var elemento = new SelectListItem { Value = valor.ToString() };
+            // si tiene definido el dataannotation display, lo uso.
+            var atributoDisplay = ((DisplayAttribute[])campo.GetCustomAttributes(typeof(DisplayAttribute), false)).FirstOrDefault();
+            if (atributoDisplay != null)
+            {
+                elemento.Text = atributoDisplay.GetName();
+            }
+            else
+            {
+                elemento.Text = valor.ToString();
+            }
+            elemento.Selected = valor == Model;
+            listaTipoEnum.Add(elemento);
+        }
+    }
+}
+
+@Html.DropDownList("", listaTipoEnum, textoMostrar, atributosHtml);
