@@ -1,0 +1,9 @@
+﻿@model Enum
+@if (EnumHelper.IsValidForEnumHelper(ViewData.ModelMetadata))
+{
+    @Html.EnumDropDownListFor(model => model.Tipo, "Selecciona el tipo de Cliente", new { @class = "form-control", style = "width:500px" })
+}
+else
+{
+    @Html.TextBoxFor(model => model.Tipo, new { @class = "form-control" })
+}

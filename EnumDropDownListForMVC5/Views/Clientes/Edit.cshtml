@@ -1,0 +1,36 @@
+﻿@using EnumDropDownListForMVC5.Models
+@model ViewModelCliente
+@{
+    Layout = null;
+}
+@{ ViewBag.Title = "Edit"; }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+</head>
+<body>
+    @Html.ValidationSummary(false)
+    <h2>Editar Usuario</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(x => x.idCliente)
+        <div class="form-group">
+            <label>Nombre</label>
+            @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Tipo Cliente</label>
+            @Html.EditorFor(m => m.Tipo, "EnumRadioButton", new { @class = "form-control", style = "width:200px" })
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    }
+
+    <div>
+    </div>
+</body>
+</html>
